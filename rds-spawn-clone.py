@@ -135,8 +135,8 @@ def main(argv):
     sys.exit(2)
  
 
-  restoreName="%s-%d" % (snapshot.replace("rds:", "restore-"), time.time())
-  cmd = "aws rds restore-db-instance-from-db-snapshot --db-instance-identifier %s --tags Key=rds-dr-walkaway,Value=%s --db-snapshot-identifier %s --db-instance-class %s" % (
+  restoreName="%s-%d"[:63] % (snapshot.replace("rds:", "restore-"), time.time())
+  cmd = "aws rds restore-db-instance-from-db-snapshot --publicly-accessible --db-instance-identifier %s --tags Key=rds-dr-walkaway,Value=%s --db-snapshot-identifier %s --db-instance-class %s" % (
     restoreName,
     snapshot,
     snapshot,
